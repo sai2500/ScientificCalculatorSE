@@ -1,10 +1,14 @@
 from math import *
 from tkinter import *
 
+# Create a class named 'calculator' that inherits from 'Tk' (Tkinter's main window class)
 class calculator(Tk):
+
     def __init__(self):
+
+        # Initializing the class by calling the constructor of the superclass (Tk)
         super().__init__()
-        self.title('Scientific Calculator')
+
         # Setting up the main window properties
         self.title('Scientific Calculator')
         self.geometry('400x400')
@@ -22,9 +26,10 @@ class calculator(Tk):
 
         # List of button values
         values = ["7", "8", "9", "/", "%", "clear", "AC",
-          "4", "5", "6", "", "(", ")", "*",
+          "4", "5", "6", "*", "(", ")", "**",
           "1", "2", "3", "-", "=", ",", "0", ".", "min", "+", "sin", "asin", "cos", "acos", "tan",
           "pow", "log", "max", "abs", "floor", "pi", "e", "ln", "ceil", "degrees", "radians"]
+        
         # Initializing row and column for the grid
         row, col = 1, 0
         padx, pady = 10, 10
@@ -56,4 +61,31 @@ class calculator(Tk):
 
         # Starting the main event loop
         self.mainloop()
+
+    # Method to clear all input in the Entry widget
+
+    def clearall(self):
+        self.string.set("")
+
+    # Method to evaluate the expression in the Entry widget and display the result
+    def equals(self):
+        result = ""
+
+        try:
+            result = eval(self.string.get())
+            self.string.set(result)
+        except:
+            result = "ERR"
+        self.string.set(result)
+
+    # Method to add a character to the input in the Entry widget
+    def addChar(self, char):
+        self.string.set(self.string.get() + (str(char)))
+
+    # Method to delete the last character in the input in the Entry widget
+    def delete(self):
+        self.string.set(self.string.get()[0:-1])
+        
+
+
 calculator()
